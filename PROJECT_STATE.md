@@ -9,12 +9,12 @@
 - `.trash/` added to `.gitignore`.
 - Fixed the live Windows setup blocker `spawn env ENOENT`: `workerProbe` now passes PATH through the subprocess environment, and prepare commands use the host shell (`cmd /d /s /c` on Windows, `sh -c` on POSIX).
 - Live verification passed on profile `media-superagent` (port 3086): runtime `ready`, no setup problem, GitHub Source `ready`.
+- Created fork `Gaazi/dsh-superagent-prototype`, added remote `myfork`, and pushed `dev` successfully (verified remote and local at `0076978`). `origin` remains the upstream `deepseek-ai` repo, which has no write access (HTTP 403).
 
 ## Pending
 
-- Push to `origin/dev` is blocked: HTTP 403, the account has no write access to `deepseek-ai/dsh-superagent-prototype.git`; the commit is local on `dev`.
 - Delete the recoverable `.trash/2026-11-20/MediaProcessor-old` copy only after the operator confirms the migrated project is stable.
 
 ## Next Step
 
-- Give the agent write access to a remote (or a fork) so `dev` can be pushed; the code is otherwise complete and verified.
+- Optional: open a pull request from `myfork/dev` to the upstream `deepseek-ai` repo if these fixes should be contributed back.
