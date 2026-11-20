@@ -15,6 +15,7 @@ import { feishuKind, feishuTrigger } from '../../src/sources/feishu.ts'
 import { githubKind } from '../../src/sources/github.ts'
 import { Commands } from '../../src/infra/commands.ts'
 import { credentialHelper, workerGitConfig } from '../../src/infra/environment.ts'
+import { shellCommand } from '../../src/infra/platform.ts'
 import type { Trigger } from '../../src/core/index.ts'
 import { testMachine } from './deployment.ts'
 
@@ -155,6 +156,8 @@ export async function startRuntime(seed?: (store: Store) => void) {
   const subprocess = { spawn: vi.fn((spec: { argv: readonly string[] }) => {
     const argv = [...spec.argv]
     while (argv[0] === 'env' || /^[A-Z_]+=/.test(argv[0] ?? '')) argv.shift()
+    // Reduce a Windows shell command line to the `sh -c` key the POSIX answers use.
+    if (process.platform === 'win32' && argv[0] === shellCommand('')[0]) argv.splice(0, 4, 'sh', '-c')
     const reader = (text: string) => ({ readFrom: () => ({ text, nextOffset: text.length, lossy: false }) })
     const exited = { exitCode: 0, signal: null }
     const done = argv[0] === 'sh' && hooks.prepare ? hooks.prepare.then(() => exited) : Promise.resolve(exited)

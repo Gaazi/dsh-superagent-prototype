@@ -146,7 +146,9 @@ export function applyEnvironment(variables: Record<string, string | undefined>, 
 
 /** Spawns a command through the DSH subprocess runtime, which strips credential-shaped environment variables. */
 export async function runAsWorker(subprocess: SubprocessRuntime, argv: string[], cwd: string, signal: AbortSignal, env?: Record<string, string>): Promise<string> {
-  const handle = subprocess.spawn({ argv, cwd, graceMs: 2000, signal, ...env ? { env } : {}, stdio: { stdin: 'ignore', stdout: { maxBytes: 1 << 20 }, stderr: { maxBytes: 1 << 16 } } })
+  // Windows needs the full environment (SystemRoot, ComSpec) alongside the override; a bare `{ PATH }` would leave cmd unusable.
+  const values = env ? Object.fromEntries(Object.entries({ ...process.env, ...env }).filter(([, value]) => value !== undefined)) as Record<string, string> : undefined
+  const handle = subprocess.spawn({ argv, cwd, graceMs: 2000, signal, ...values ? { env: values } : {}, stdio: { stdin: 'ignore', stdout: { maxBytes: 1 << 20 }, stderr: { maxBytes: 1 << 16 } } })
   const { exitCode } = await handle.done
   const read = (reader: SubprocessOutputReader | undefined): string => reader?.readFrom(0).text ?? ''
   if (exitCode === 0) return read(handle.collected.stdout)

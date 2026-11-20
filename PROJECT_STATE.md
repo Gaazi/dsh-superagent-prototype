@@ -7,13 +7,14 @@
 - Old `D:\Projects\MediaProcessor` data copied to `D:\Projects\Media Processor\MediaProcessor` and the old directory moved to the recoverable `.trash/2026-11-20/MediaProcessor-old`.
 - `pnpm check` passes: typecheck, 1176 tests passed, 27 POSIX-only skips, build.
 - `.trash/` added to `.gitignore`.
+- Fixed the live Windows setup blocker `spawn env ENOENT`: `workerProbe` now passes PATH through the subprocess environment, and prepare commands use the host shell (`cmd /d /s /c` on Windows, `sh -c` on POSIX).
+- Live verification passed on profile `media-superagent` (port 3086): runtime `ready`, no setup problem, GitHub Source `ready`.
 
 ## Pending
 
 - Push to `origin/dev` is blocked: HTTP 403, the account has no write access to `deepseek-ai/dsh-superagent-prototype.git`; the commit is local on `dev`.
-- Live verification with DSH on Windows after restart (profile `media-superagent`, port 3086, state `D:/dsh-state/media-superagent`).
 - Delete the recoverable `.trash/2026-11-20/MediaProcessor-old` copy only after the operator confirms the migrated project is stable.
 
 ## Next Step
 
-- Start DeepSeek Harness with the `media-superagent` profile and check that the orchestrator Session and GitHub Source report healthy.
+- Give the agent write access to a remote (or a fork) so `dev` can be pushed; the code is otherwise complete and verified.
