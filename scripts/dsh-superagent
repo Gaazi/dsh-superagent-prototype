@@ -7,7 +7,6 @@ and 3 when it runs and waits for setup. A restart fixes neither 2 nor 3: they ne
 """
 
 import argparse
-import fcntl
 import json
 import os
 from pathlib import Path
@@ -18,6 +17,10 @@ import signal
 import subprocess
 import sys
 import time
+if sys.platform == 'win32':
+    sys.stderr.write('scripts/dsh-superagent needs a POSIX host (fcntl, ps, tmux); start DSH directly on Windows.\n')
+    raise SystemExit(1)
+import fcntl
 import urllib.error
 import urllib.request
 
