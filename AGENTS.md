@@ -11,9 +11,9 @@ Single unified Super Agent workspace inside `D:\Projects\MediaHub\` overseeing a
 
 ## Managed Apps & Sub-Repos (Separate `.venv`s & Git Repos)
 
-1. **MediaProcessor (`media_processor`)**: `D:\Projects\MediaHub\MediaProcessor\MediaProcessor\MediaProcessor`
-2. **Media Maker (`media_maker`)**: `D:\Projects\MediaHub\Media Maker\MediaMaker\MediaMaker`
-3. **Auto Publisher (`auto_publisher`)**: `D:\Projects\MediaHub\Auto Publisher\Auto Publisher`
+1. **MediaProcessor (`media_processor`)**: `D:\Projects\MediaHub\MediaProcessor\MediaProcessor`
+2. **Media Maker (`media_maker`)**: `D:\Projects\MediaHub\Media Maker\MediaMaker`
+3. **Auto Publisher (`auto_publisher`)**: `D:\Projects\MediaHub\Auto Publisher`
 
 ## Routing & Rules
 

@@ -1,14 +1,14 @@
 # Project State
 
-Updated: 2026-11-28 05:27 +05:30
+Updated: 2026-11-28 05:40 +05:30
 
 ## Done
 - Consolidated the separate MediaHub superagent copies into this single unified workspace `D:\Projects\MediaHub\Media superagent`, overseeing all three MediaHub apps (`MediaProcessor`, `Media Maker`, `Auto Publisher`) via `D:\Projects\MediaHub\MediaHub`.
-- Moved duplicate `Media Maker superagent` (`116.3 MB`), legacy `publisher-superagent` (`12,767.7 MB`), and `Media superagent-state` recoverably into `D:\Projects\MediaHub\.trash\superagent-consolidation-20261128\`.
-- Added `AGENTS.md`, `GEMINI.md`, and `CLAUDE.md` pointing to `D:\Projects\MediaHub\Media superagent`.
+- Updated `AGENTS.md` to flattened app paths (`MediaProcessor\MediaProcessor`, `Media Maker\MediaMaker`, `Auto Publisher`) and rebuilt `node_modules` junctions via `pnpm install --offline` after moving stale `node_modules` to `D:\Projects\MediaHub\.trash\superagent-node_modules-20261128`.
+- Verified `pnpm check` (`tsc --noEmit`, `vitest run`: 60 files / 1176 passed / 27 skipped, `tsdown` build) and `MediaHub/tests/test_media_hub.py` (`7 passed`).
 
 ## Pending
-- Owner decision on emptying `D:\Projects\MediaHub\.trash\superagent-consolidation-20261128\` (`publisher-superagent` 12.5 GB + duplicate `Media Maker superagent`) when ready to reclaim disk space.
+- Owner decision on emptying `D:\Projects\MediaHub\.trash\` (`superagent-consolidation-20261128`, `flatten-cleanup-20261128`, `superagent-node_modules-20261128`) when ready to reclaim disk space.
 
 ## Next Step
-- Run `MediaHub` verification (`pytest MediaHub/tests`) and use `D:\Projects\MediaHub\Media superagent` as the sole MediaHub superagent root.
+- Use `D:\Projects\MediaHub\Media superagent` as the sole MediaHub superagent root on `dev`.
