@@ -18,6 +18,5 @@ Single unified Super Agent workspace inside `D:\Projects\MediaHub\` overseeing a
 ## Routing & Rules
 
 - Unified Plugin Gateway: `D:\Projects\MediaHub\MediaHub` (`MediaHub.server`, `MediaHub/plugins.json`).
-- Service Control & State: `D:\Projects\MediaHub\Media superagent-state` (`service.ps1`, `configure.ps1`).
 - Never create separate `*-superagent` copies inside individual MediaHub app folders; all MediaHub superagent work stays here.
 - Keep each underlying app's `.venv`, Git repository, and safety rules (Private YouTube uploads only, zero paid promotion, face-free Sahabah visuals, H.264 intermediate / H.265 final) strictly intact.
