@@ -97,6 +97,8 @@ Copy [examples/profile.cordis.patch.yml](../examples/profile.cordis.patch.yml) t
 
 After the first start, edit machine limits in **Settings → Deployment** or the DeepSeek Harness Plugin Manager. Changes apply without restart. `stateDir` cannot be changed there. Invalid values or unknown configuration keys prevent startup; the log identifies the key.
 
+On Windows, `stateDir` accepts a drive path with either separator (`D:\state` or `D:/state`) and a UNC path (`\\host\share\state`). The worker shims in `worker-bin` are `.cmd` command files there, and the shell tool is `pwsh` instead of `bash`. The `scripts/dsh-superagent` helper needs POSIX `fcntl`, `ps` and `tmux`; start DeepSeek Harness directly on Windows instead of through that script.
+
 ## Start and stop
 
 ```sh
